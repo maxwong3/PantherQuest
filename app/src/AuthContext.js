@@ -19,12 +19,22 @@ export const AuthProvider = ({ children }) => {
     }, []);
     
     const login = (username, password) => {
-        
-        setIsAuthenticated(true);
+        // Validate test account
+        if (username === 'test' && password === 'test') {
+            const userData = { username: 'test', role: 'user' };
+            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('token', 'test-token');
+            setUser(userData);
+            setIsAuthenticated(true);
+            return true;
+        }
+        return false;
     };
 
     const logout = () => {
-        
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        setUser(null);
         setIsAuthenticated(false);
     };
 
