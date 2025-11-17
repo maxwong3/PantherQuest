@@ -1,8 +1,11 @@
 # PantherQuest
 
 To run the application with Express:  
-cd app 
-node app.js  
+In the command line:
+``` 
+cd app
+node app.js   
+``` 
 Go to localhost:3000
 
 [CS 1530]  
