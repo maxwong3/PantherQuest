@@ -18,13 +18,17 @@ const Home = () => {
         </button>
       </header>
       
-      <div className="map-container">
-        <div>map in here</div>
+      <div className="content-wrapper">
+        <div className="map-container">
+           map in here
+        </div>
+
+        <div className="quest-list">
+          <h2>Upcoming Quests</h2>
+            quest list here
+        </div>
       </div>
-      
 
-
-      
       <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
     </div>
   );
