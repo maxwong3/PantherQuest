@@ -1,6 +1,7 @@
 import React ,{useState} from 'react';
 import './Home.css';
 import Profile from '../components/Profile';
+import Map from '../components/Map';
 
 
 const Home = () => {
@@ -18,14 +19,29 @@ const Home = () => {
         </button>
       </header>
       
-      <div className="content-wrapper">
-        <div className="map-container">
-           map in here
+      <div className="stats-wrapper">
+        <div className="quest-completion">
+          <h2>Quest Completion</h2>
         </div>
 
-        <div className="quest-list">
-          <h2>Upcoming Quests</h2>
-            quest list here
+        <div className="live-activities">
+          <h2>Live Activities</h2>
+        </div>
+      </div>
+      
+      <div className="content-wrapper">
+        <div className="map-container">
+          <Map />
+        </div>
+
+        <div className="sidebar">
+          <div className="quest-list">
+            <h2>Upcoming Quests</h2>
+          </div>
+
+          <div className="tips-block">
+            <h2>Navigator Tips</h2>
+          </div>
         </div>
       </div>
 
