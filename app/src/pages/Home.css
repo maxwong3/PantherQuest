@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home-page{
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #03389a 0%, #001a3d 60%);
+    margin: 0;
+    padding: 15px 15px 0 15px;
+}
+
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.topbar h1 {
+    color: #000000;
+    font-size: 30px;
+}
+
+.profile-button{
+    background: linear-gradient(135deg, #2f6bff 0%, #5a9bff 100%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.profile-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+    box-shadow: 0 4px 12px rgba(47, 107, 255, 0.4);
+}
+
+.profile-button:active {
+    transform: translateY(0);
+}
+
+.icon{
+    font-size: 28px;
+}
+
+.map-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding: 20px;
+    min-height: 500px;
+}

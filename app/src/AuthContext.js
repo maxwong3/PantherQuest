@@ -29,6 +29,9 @@ export const AuthProvider = ({ children }) => {
             return true;
         }
         return false;
+        
+        // add real authentication logic here 
+
     };
 
     const logout = () => {

@@ -1,10 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .login-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #003594 0%, #001a3d 50%, #FFB81C 100%);
-  padding: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .login-card {
@@ -73,7 +79,7 @@
 }
 
 .login-button {
-  background: linear-gradient(135deg, #003594, #FFB81C);
+  background: linear-gradient(135deg, #003594);
   color: white;
   border: none;
   padding: 14px;
