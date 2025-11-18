@@ -3,18 +3,21 @@
 Hey team: for Sprint 3 Development: Check sprint-3-dev branch!
 
 To run the application with Express:  
+```
+cd app
+npm run build
+node app
+```
+Go to localhost:3000.
 
-To run frontend:
+
+
+  
+To run frontend only:
 ```
 cd app
 npm start
 ```
-In the command line:
-``` 
-cd app
-node app.js   
-``` 
-Go to localhost:3000
 
 
 [CS 1530]  
