@@ -6,7 +6,7 @@ To run the application with Express:
 In the command line:
 ``` 
 cd app
-node app.js   
+node app
 ``` 
 Go to localhost:3000
 
