@@ -6,19 +6,42 @@ import Map from '../components/Map';
 
 const Home = () => {
   const [showProfile, setShowProfile] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
   const user = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
+
+  const handleLocateUser = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation([latitude, longitude]);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          alert('Please enable location services.');
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+  };
 
   return (
     <div className="home-page">
       <header className="topbar">
         <h1>Welcome back, {user.username} </h1>
 
-        <button className="profile-button" onClick={() => setShowProfile(!showProfile)}>
-            <span className="icon">👤</span>
-            <span>Profile</span>
-        </button>
+        <div className="topbar-buttons">
+          <button className="location-button" onClick={handleLocateUser}>
+              <span className="icon">🧭</span>
+              <span>My Location</span>
+          </button>
+          <button className="profile-button" onClick={() => setShowProfile(!showProfile)}>
+              <span className="icon">👤</span>
+              <span>Profile</span>
+          </button>
+        </div>
       </header>
-      
       <div className="stats-wrapper">
         <div className="quest-completion">
           <h2>Quest Completion</h2>
@@ -31,7 +54,7 @@ const Home = () => {
       
       <div className="content-wrapper">
         <div className="map-container">
-          <Map />
+          <Map userLocation={userLocation} />
         </div>
 
         <div className="sidebar">
