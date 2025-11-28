@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './Map.css';
+import { buildings } from './InitialData.js';
+import BuildingDetails from './Building';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -11,7 +13,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// user location
 const userIcon = L.divIcon({
   html: '<div style="font-size: 28px;">📍</div>',
   className: 'custom-user-icon',
@@ -19,15 +20,12 @@ const userIcon = L.divIcon({
   iconAnchor: [15, 30],
 });
 
-// handle map movements
 const MapController = ({ userLocation }) => {
   const map = useMap();
   
   useEffect(() => {
     if (userLocation) {
-      map.flyTo(userLocation, 17, {
-        duration: 1.5
-      });
+      map.flyTo(userLocation, 17, { duration: 1.5 });
     }
   }, [userLocation, map]);
   
@@ -35,36 +33,61 @@ const MapController = ({ userLocation }) => {
 };
 
 const Map = ({ userLocation }) => {
-  // pitt coordinates
+  const [selectedBuilding, setSelectedBuilding] = useState(null);
   const pitt = [40.4443, -79.9608];
 
   return (
-    <MapContainer 
-      center={pitt} 
-      zoom={15} 
-      className="map-leaflet"
-    >
-      <MapController userLocation={userLocation} />
+    <>
+      <MapContainer 
+        center={pitt} 
+        zoom={15} 
+        className="map-leaflet"
+      >
+        <MapController userLocation={userLocation} />
+        
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        
+        {buildings.map(building => {
+          const icon = L.divIcon({
+            html: `<div style="font-size: 28px;">${building.sprite}</div>`,
+            className: 'building-icon',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+          });
+
+          return (
+            <Marker 
+              key={building.id} 
+              position={building.position} 
+              icon={icon}
+              eventHandlers={{ click: () => setSelectedBuilding(building) }}
+            >
+              <Popup>{building.name}</Popup>
+            </Marker>
+          );
+        })}
+        
+        {userLocation && (
+          <Marker position={userLocation} icon={userIcon}>
+            <Popup>You are here</Popup>
+          </Marker>
+        )}
+      </MapContainer>
       
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      
-      <Marker position={pitt}>
-        <Popup>
-          University of Pittsburgh
-        </Popup>
-      </Marker>
-      
-      {userLocation && (
-        <Marker position={userLocation} icon={userIcon}>
-          <Popup>
-            You are here
-          </Popup>
-        </Marker>
+      {selectedBuilding && (
+        <BuildingDetails 
+          building={selectedBuilding}
+          events={[]}
+          onClose={() => setSelectedBuilding(null)}
+          onEventClick={() => {}}
+          visitedBuildings={[]}
+          completedEvents={[]}
+        />
       )}
-    </MapContainer>
+    </>
   );
 };
 

@@ -1,0 +1,287 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.building-details {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUpModal 0.3s ease-out;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f0f0f0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #e0e0e0;
+  transform: rotate(90deg);
+}
+
+.building-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.building-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.building-header h2 {
+  margin: 0 0 8px 0;
+  color: #003594;
+  font-size: 24px;
+}
+
+.building-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 8px;
+}
+
+.building-badge.academic {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.building-badge.library {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.building-badge.athletics {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.building-badge.student_center {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.visited-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #4caf50;
+  color: white;
+}
+
+.building-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-size: 16px;
+  color: #003594;
+  margin-bottom: 12px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: #f5f5f5;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.classroom-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.classroom-badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.event-card:hover {
+  background: #f0f0f0;
+  border-color: #003594;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.event-card.completed {
+  background: #e8f5e9;
+  opacity: 0.8;
+}
+
+.event-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.event-info {
+  flex: 1;
+}
+
+.event-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.event-location {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.event-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #e0e0e0;
+  color: #555;
+}
+
+.event-type.research {
+  background: #e1f5fe;
+  color: #0277bd;
+}
+
+.event-type.tour {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.event-type.workshop {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.event-type.support {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.event-type.career {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.completed-check {
+  font-size: 24px;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.no-events {
+  text-align: center;
+  padding: 32px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .building-details {
+    padding: 24px;
+    max-height: 90vh;
+  }
+
+  .building-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
