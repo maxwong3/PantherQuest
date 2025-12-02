@@ -8,7 +8,15 @@ import AdminPanel from "./pages/AdminPanel";
 
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
+  
+  if (loading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    );
+  }
   
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
@@ -20,7 +28,7 @@ export default function App() {
         <AuthProvider>
             <Router>
                 <Routes>
-                   <Route path="/map" element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
+                   <Route path="/home" element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
                    <Route path="/admin" element={ <ProtectedRoute> <AdminPanel /> </ProtectedRoute> } />
                    <Route path="/login" element={<Login />} />
                    <Route path="/" element={<Navigate to="/login" />} />

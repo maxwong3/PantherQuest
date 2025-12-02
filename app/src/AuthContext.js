@@ -19,17 +19,30 @@ export const AuthProvider = ({ children }) => {
     }, []);
     
     const login = (username, password) => {
+        // Validate test account
+        if (username === 'test' && password === 'test') {
+            const userData = { username: 'test', role: 'user' };
+            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('token', 'test-token');
+            setUser(userData);
+            setIsAuthenticated(true);
+            return true;
+        }
+        return false;
         
-        setIsAuthenticated(true);
+        // add real authentication logic here 
+
     };
 
     const logout = () => {
-        
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        setUser(null);
         setIsAuthenticated(false);
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, loading, user }}>
             {children}
         </AuthContext.Provider>
     );
