@@ -36,12 +36,22 @@ const Map = ({ userLocation }) => {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const pitt = [40.4443, -79.9608];
 
+  // Bounds to restrict map to Pitt campus area
+  const campusBounds = [
+    [40.4350, -79.9750], // Southwest corner
+    [40.4550, -79.9450]  // Northeast corner
+  ];
+
   return (
     <>
       <MapContainer 
         center={pitt} 
         zoom={15} 
         className="map-leaflet"
+        minZoom={15}
+        maxZoom={18}
+        maxBounds={campusBounds}
+        maxBoundsViscosity={1.0}
       >
         <MapController userLocation={userLocation} />
         
