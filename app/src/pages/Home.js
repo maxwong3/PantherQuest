@@ -1,8 +1,7 @@
-import React ,{useState} from 'react';
+import React, { useState } from 'react';
 import './Home.css';
 import Profile from '../components/Profile';
 import Map from '../components/Map';
-
 
 const Home = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -29,46 +28,59 @@ const Home = () => {
   return (
     <div className="home-page">
       <header className="topbar">
-        <h1>Welcome back, {user.username} </h1>
-
-        <div className="topbar-buttons">
-          <button className="location-button" onClick={handleLocateUser}>
-              <span className="icon">🧭</span>
-              <span>My Location</span>
+        <div className="topbar-left">
+          <h1 className="logo">PantherQuest</h1>
+        </div>
+        <div className="topbar-right">
+          <button 
+            className="btn btn-secondary" 
+            onClick={handleLocateUser}
+            aria-label="Find my location"
+          >
+            <span>📍</span>
+            <span>My Location</span>
           </button>
-          <button className="profile-button" onClick={() => setShowProfile(!showProfile)}>
-              <span className="icon">👤</span>
-              <span>Profile</span>
-          </button>
+          <div className="profile-wrapper">
+            <button 
+              className={`btn btn-profile ${showProfile ? 'active' : ''}`}
+              onClick={() => setShowProfile(!showProfile)}
+              aria-label="Toggle profile"
+            >
+              <div className="avatar">
+                {user?.username?.charAt(0).toUpperCase() || 'G'}
+              </div>
+            </button>
+            <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+          </div>
         </div>
       </header>
-      <div className="stats-wrapper">
-        <div className="quest-completion">
-          <h2>Quest Completion</h2>
+
+      <main className="main-content">
+        <div className="greeting-section">
+          <h2 className="greeting">
+            Welcome back, <span className="username">{user?.username || 'Traveler'}</span>
+          </h2>
+          <p className="subtitle">Ready to explore today?</p>
         </div>
 
-        <div className="live-activities">
-          <h2>Live Activities</h2>
-        </div>
-      </div>
-      
-      <div className="content-wrapper">
-        <div className="map-container">
-          <Map userLocation={userLocation} />
-        </div>
-
-        <div className="sidebar">
-          <div className="quest-list">
-            <h2>Upcoming Quests</h2>
+        <div className="content-wrapper">
+          <div className="map-section">
+            <Map userLocation={userLocation} />
           </div>
 
-          <div className="tips-block">
-            <h2>Navigator Tips</h2>
+          <div className="sidebar">
+            <div className="sidebar-card">
+              <h3>Quests Available</h3>
+              <p className="empty-state">No quests available</p>
+            </div>
+
+            <div className="sidebar-card">
+              <h3>Navigator Tips</h3>
+              <p className="empty-state">Click on buildings to explore!</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      </main>
     </div>
   );
 };
