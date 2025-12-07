@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <header className="topbar">
-        <h1>Welcome back, {user.username} </h1>
+        <h1>PantherQuest </h1>
 
         <div className="topbar-buttons">
           <button className="location-button" onClick={handleLocateUser}>
@@ -42,16 +42,7 @@ const Home = () => {
           </button>
         </div>
       </header>
-      <div className="stats-wrapper">
-        <div className="quest-completion">
-          <h2>Quest Completion</h2>
-        </div>
-
-        <div className="live-activities">
-          <h2>Live Activities</h2>
-        </div>
-      </div>
-      
+     
       <div className="content-wrapper">
         <div className="map-container">
           <Map userLocation={userLocation} />
@@ -59,7 +50,7 @@ const Home = () => {
 
         <div className="sidebar">
           <div className="quest-list">
-            <h2>Upcoming Quests</h2>
+            <h2>Quest Available</h2>
           </div>
 
           <div className="tips-block">
