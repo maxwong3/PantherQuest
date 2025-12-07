@@ -25,7 +25,7 @@ export const buildings = [
   {
     id: 'wpu',
     name: 'William Pitt Union',
-    position: [40.4441, -79.9548],
+    position: [40.4437, -79.9545],
     type: 'student_center',
     description: 'The hub of student life, featuring dining, ballrooms, and student organization offices.',
     departments: ['Student Affairs', 'Pitt Program Council', 'Career Center'],
@@ -37,7 +37,7 @@ export const buildings = [
   {
     id: 'benedum',
     name: 'Benedum Hall',
-    position: [40.4435, -79.9579],
+    position: [40.4442, -79.9582],
     type: 'academic',
     description: 'The massive concrete home of the Swanson School of Engineering.',
     departments: ['Mechanical Engineering', 'Civil Engineering', 'Electrical Engineering', 'Bioengineering'],
@@ -47,7 +47,7 @@ export const buildings = [
   {
     id: 'sennott',
     name: 'Sennott Square',
-    position: [40.4416, -79.9542],
+    position: [40.4416, -79.9564],
     type: 'academic',
     description: 'Modern building housing the School of Computing and Information and the College of Business Administration.',
     departments: ['Computer Science', 'Information Science', 'Business', 'Psychology'],
@@ -57,7 +57,7 @@ export const buildings = [
   {
     id: 'chevron',
     name: 'Chevron Science Center',
-    position: [40.4453, -79.9573],
+    position: [40.4462, -79.9572],
     type: 'academic',
     description: 'Home to the Chemistry department, featuring labs and the Bunsen Brewer cafe.',
     departments: ['Chemistry'],
@@ -67,7 +67,7 @@ export const buildings = [
   {
     id: 'thackeray',
     name: 'Thackeray Hall',
-    position: [40.4426, -79.9582],
+    position: [40.4442, -79.9575],
     type: 'academic',
     description: 'Houses the Math department and key student services like registration and financial aid.',
     departments: ['Mathematics', 'Statistics', 'Financial Aid', 'Registrar'],
@@ -77,7 +77,7 @@ export const buildings = [
   {
     id: 'langley',
     name: 'Langley Hall',
-    position: [40.4451, -79.9555],
+    position: [40.4466, -79.9542],
     type: 'academic',
     description: 'Part of the Clapp/Langley/Crawford complex, dedicated to biological sciences.',
     departments: ['Biological Sciences', 'Neuroscience'],
@@ -87,7 +87,7 @@ export const buildings = [
   {
     id: 'clapp',
     name: 'Clapp Hall',
-    position: [40.4448, -79.9553],
+    position: [40.4462, -79.9530],
     type: 'academic',
     description: 'Features a large lecture hall and biology labs.',
     departments: ['Biological Sciences'],
@@ -97,7 +97,7 @@ export const buildings = [
   {
     id: 'crawford',
     name: 'Crawford Hall',
-    position: [40.4449, -79.9560],
+    position: [40.4468, -79.9544],
     type: 'academic',
     description: 'Connects Langley and Clapp halls, housing neuroscience research.',
     departments: ['Neuroscience', 'Biological Sciences'],
@@ -107,7 +107,7 @@ export const buildings = [
   {
     id: 'old_engineering',
     name: 'Old Engineering Hall',
-    position: [40.4458, -79.9558],
+    position: [40.4451, -79.9579],
     type: 'academic',
     description: 'Historic building now used for various academic purposes.',
     departments: ['Geology', 'Planetary Science'],
@@ -119,7 +119,7 @@ export const buildings = [
   {
     id: 'wesw',
     name: 'Wesley W. Posvar Hall',
-    position: [40.4407, -79.9538],
+    position: [40.4415, -79.9546],
     type: 'academic',
     description: 'The largest academic building on campus, formerly built on the site of Forbes Field.',
     departments: ['Economics', 'Political Science', 'Sociology', 'Education', 'GSPIA'],
@@ -129,7 +129,7 @@ export const buildings = [
   {
     id: 'lawrence',
     name: 'David Lawrence Hall',
-    position: [40.4437, -79.9560],
+    position: [40.4424, -79.9553],
     type: 'academic',
     description: 'Contains large lecture halls often used for introductory courses.',
     departments: ['General Education'],
@@ -139,7 +139,7 @@ export const buildings = [
   {
     id: 'frick',
     name: 'Frick Fine Arts',
-    position: [40.4411, -79.9515],
+    position: [40.4418, -79.9509],
     type: 'academic',
     description: 'Renaissance-style building housing the art gallery, library, and art history department.',
     departments: ['History of Art & Architecture', 'Studio Arts'],
@@ -149,7 +149,7 @@ export const buildings = [
   {
     id: 'music',
     name: 'Music Building',
-    position: [40.4450, -79.9525],
+    position: [40.4467, -79.9522],
     type: 'academic',
     description: 'Historic stone building, formerly the first TV station (WQED).',
     departments: ['Music'],
@@ -159,7 +159,7 @@ export const buildings = [
   {
     id: 'bellefield',
     name: 'Bellefield Hall',
-    position: [40.4448, -79.9519],
+    position: [40.4454, -79.9509],
     type: 'academic',
     description: 'Contains a pool, gym, auditorium, and classrooms.',
     departments: ['Social Work', 'Africana Studies'],
@@ -171,7 +171,7 @@ export const buildings = [
   {
     id: 'barco',
     name: 'Barco Law Building',
-    position: [40.4418, -79.9563],
+    position: [40.4423, -79.9555],
     type: 'academic',
     description: 'Home to the School of Law and the Barco Law Library.',
     departments: ['Law'],
@@ -181,7 +181,7 @@ export const buildings = [
   {
     id: 'is_building',
     name: 'Information Sciences Building',
-    position: [40.4468, -79.9514],
+    position: [40.4474, -79.9527],
     type: 'academic',
     description: 'Located on N Bellefield, part of the SCI.',
     departments: ['Information Culture', 'Data Stewardship'],
@@ -191,7 +191,7 @@ export const buildings = [
   {
     id: 'mervis',
     name: 'Mervis Hall',
-    position: [40.4412, -79.9525],
+    position: [40.4408, -79.9533],
     type: 'academic',
     description: 'Home to the Katz Graduate School of Business.',
     departments: ['Business (Graduate)'],
@@ -203,7 +203,7 @@ export const buildings = [
   {
     id: 'scaife',
     name: 'Scaife Hall',
-    position: [40.4431, -79.9613],
+    position: [40.4427, -79.9619],
     type: 'medical',
     description: 'Primary facility for the School of Medicine and Falk Library.',
     departments: ['Medicine'],
@@ -213,7 +213,7 @@ export const buildings = [
   {
     id: 'victoria',
     name: 'Victoria Building',
-    position: [40.4425, -79.9602],
+    position: [40.4416, -79.9607],
     type: 'medical',
     description: 'Home to the School of Nursing.',
     departments: ['Nursing'],
@@ -223,7 +223,7 @@ export const buildings = [
   {
     id: 'salk',
     name: 'Salk Hall',
-    position: [40.4436, -79.9608],
+    position: [40.4427, -79.9628],
     type: 'medical',
     description: 'Where Jonas Salk developed the polio vaccine. Houses Pharmacy and Dental Medicine.',
     departments: ['Pharmacy', 'Dental Medicine'],
@@ -245,7 +245,7 @@ export const buildings = [
   {
     id: 'nordenberg',
     name: 'Nordenberg Hall',
-    position: [40.4432, -79.9563],
+    position: [40.4427, -79.9566],
     type: 'residential',
     description: 'Modern freshman housing and home to the Student Health Service and Panther Central.',
     departments: ['Housing', 'Student Health', 'Panther Central'],
@@ -255,7 +255,7 @@ export const buildings = [
   {
     id: 'sutherland',
     name: 'Sutherland Hall',
-    position: [40.4453, -79.9642],
+    position: [40.4459, -79.9627],
     type: 'residential',
     description: 'Upper campus dormitory near the Pete, housing the Perch dining hall.',
     departments: ['Housing', 'Dining'],
@@ -265,7 +265,7 @@ export const buildings = [
   {
     id: 'holland',
     name: 'Holland Hall',
-    position: [40.4430, -79.9550],
+    position: [40.4432, -79.9550],
     type: 'residential',
     description: 'Historic residence hall located in the Schenley Quad.',
     departments: ['Housing'],
@@ -277,7 +277,7 @@ export const buildings = [
   {
     id: 'petersen',
     name: 'Petersen Events Center',
-    position: [40.4461, -79.9612],
+    position: [40.4440, -79.9624],
     type: 'athletics',
     description: 'The "Pete" - home to Pitt Basketball, the Zoo student section, and Baierl Rec Center.',
     departments: ['Athletics', 'Recreation'],
@@ -287,7 +287,7 @@ export const buildings = [
   {
     id: 'trees',
     name: 'Trees Hall',
-    position: [40.4438, -79.9631],
+    position: [40.4438, -79.9650],
     type: 'athletics',
     description: 'Houses the Olympic-sized swimming pool, basketball courts, and rock wall.',
     departments: ['Athletics', 'Recreation'],
@@ -297,7 +297,7 @@ export const buildings = [
   {
     id: 'fitzgerald',
     name: 'Fitzgerald Field House',
-    position: [40.4447, -79.9625],
+    position: [40.4436, -79.9643],
     type: 'athletics',
     description: 'Historic venue for volleyball, gymnastics, and wrestling.',
     departments: ['Athletics'],
@@ -307,7 +307,7 @@ export const buildings = [
   {
     id: 'cost',
     name: 'Cost Sports Center',
-    position: [40.4442, -79.9645],
+    position: [40.4458, -79.9651],
     type: 'athletics',
     description: 'Indoor practice facility for football and other field sports.',
     departments: ['Athletics'],
@@ -319,7 +319,7 @@ export const buildings = [
   {
     id: 'alumni',
     name: 'Alumni Hall',
-    position: [40.4455, -79.9538],
+    position: [40.4454, -79.9540],
     type: 'admin',
     description: 'Formerly the Masonic Temple, now houses Admissions, Alumni Relations, and a large auditorium.',
     departments: ['Admissions', 'Alumni Relations'],
@@ -329,7 +329,7 @@ export const buildings = [
   {
     id: 'ohara',
     name: 'O\'Hara Student Center',
-    position: [40.4456, -79.9567],
+    position: [40.4449, -79.9573],
     type: 'student_center',
     description: 'Meeting space for student organizations and the Writing Center.',
     departments: ['Writing Center', 'Math Assistance Center'],
