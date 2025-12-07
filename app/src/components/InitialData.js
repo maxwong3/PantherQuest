@@ -1,4 +1,5 @@
-// need to add campus buildings data 
+// add campus buildings data here
+
 export const buildings = [
   // --- Major Academic & Landmarks ---
   {
@@ -61,7 +62,7 @@ export const buildings = [
     description: 'Home to the Chemistry department, featuring labs and the Bunsen Brewer cafe.',
     departments: ['Chemistry'],
     classrooms: ['150', '152', '130', 'Lab 201'],
-    sprite: '🧪'
+    sprite: '🔬'
   },
   {
     id: 'thackeray',
@@ -81,7 +82,7 @@ export const buildings = [
     description: 'Part of the Clapp/Langley/Crawford complex, dedicated to biological sciences.',
     departments: ['Biological Sciences', 'Neuroscience'],
     classrooms: ['A219', 'A221', '224'],
-    sprite: '🧬'
+    sprite: '🔬'
   },
   {
     id: 'clapp',
@@ -101,7 +102,7 @@ export const buildings = [
     description: 'Connects Langley and Clapp halls, housing neuroscience research.',
     departments: ['Neuroscience', 'Biological Sciences'],
     classrooms: ['169'],
-    sprite: '🧠'
+    sprite: '🔬'
   },
   {
     id: 'old_engineering',
@@ -111,7 +112,7 @@ export const buildings = [
     description: 'Historic building now used for various academic purposes.',
     departments: ['Geology', 'Planetary Science'],
     classrooms: ['301', '302'],
-    sprite: '🪨'
+    sprite: '⚙️'
   },
   
   // --- Humanities & Social Sciences ---
@@ -185,7 +186,7 @@ export const buildings = [
     description: 'Located on N Bellefield, part of the SCI.',
     departments: ['Information Culture', 'Data Stewardship'],
     classrooms: ['305', '406'],
-    sprite: '💾'
+    sprite: '💻'
   },
   {
     id: 'mervis',
@@ -239,7 +240,7 @@ export const buildings = [
     description: 'Three cylindrical towers (A, B, C) housing thousands of first-year students and The Eatery.',
     departments: ['Housing', 'Dining'],
     classrooms: [],
-    sprite: '🏙️'
+    sprite: '🏠'
   },
   {
     id: 'nordenberg',
@@ -249,7 +250,7 @@ export const buildings = [
     description: 'Modern freshman housing and home to the Student Health Service and Panther Central.',
     departments: ['Housing', 'Student Health', 'Panther Central'],
     classrooms: [],
-    sprite: '🛌'
+    sprite: '🏠'
   },
   {
     id: 'sutherland',
@@ -259,7 +260,7 @@ export const buildings = [
     description: 'Upper campus dormitory near the Pete, housing the Perch dining hall.',
     departments: ['Housing', 'Dining'],
     classrooms: [],
-    sprite: '🏰'
+    sprite: '🏠'
   },
   {
     id: 'holland',
