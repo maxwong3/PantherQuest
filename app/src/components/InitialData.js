@@ -337,3 +337,152 @@ export const buildings = [
     sprite: '🖊️'
   }
 ];
+
+// Events data
+export const events = [
+  {
+    id: 1,
+    name: 'Engineering Career Fair',
+    building_id: 'benedum',
+    location: 'Benedum Hall - Room 157',
+    type: 'career',
+    icon: '💼',
+    description: 'Meet with top engineering firms and explore internship opportunities. Companies from tech, manufacturing, and energy sectors will be recruiting.',
+    date: '2025-02-15',
+    time: '10:00 AM - 4:00 PM',
+    points: 50,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 2,
+    name: 'Library Research Workshop',
+    building_id: 'hillman',
+    location: 'Hillman Library - 1st Floor',
+    type: 'workshop',
+    icon: '📖',
+    description: 'Learn advanced research techniques and database navigation. Perfect for students working on major papers or thesis projects.',
+    date: '2025-02-16',
+    time: '2:00 PM - 3:30 PM',
+    points: 25,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 3,
+    name: 'Campus Architecture Tour',
+    building_id: 'cathedral',
+    location: 'Cathedral of Learning - Commons Room',
+    type: 'tour',
+    icon: '🏛️',
+    description: 'Explore the history and architecture of the Cathedral of Learning. Visit the Nationality Rooms and learn about Gothic Revival design.',
+    date: '2025-02-17',
+    time: '1:00 PM - 2:00 PM',
+    points: 30,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 4,
+    name: 'Chemistry Lab Safety Training',
+    building_id: 'chevron',
+    location: 'Chevron Science Center - Lab 201',
+    type: 'workshop',
+    icon: '🔬',
+    description: 'Mandatory safety training for students using chemistry labs. Learn proper handling of chemicals and emergency procedures.',
+    date: '2025-02-18',
+    time: '9:00 AM - 11:00 AM',
+    points: 40,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 5,
+    name: 'Student Wellness Fair',
+    building_id: 'wpu',
+    location: 'William Pitt Union - Ballroom',
+    type: 'support',
+    icon: '🏥',
+    description: 'Learn about campus health and wellness resources. Free health screenings, mental health resources, and wellness tips.',
+    date: '2025-02-19',
+    time: '11:00 AM - 3:00 PM',
+    points: 35,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 6,
+    name: 'Tech Startup Pitch Competition',
+    building_id: 'sennott',
+    location: 'Sennott Square - 5129',
+    type: 'career',
+    icon: '💡',
+    description: 'Watch student entrepreneurs pitch their startup ideas to venture capitalists and industry experts. Network with innovators.',
+    date: '2025-02-20',
+    time: '6:00 PM - 9:00 PM',
+    points: 45,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 7,
+    name: 'Basketball Game vs Duke',
+    building_id: 'petersen',
+    location: 'Petersen Events Center - Arena',
+    type: 'social',
+    icon: '🏀',
+    description: 'Cheer on the Panthers against Duke! Join the Oakland Zoo student section for an unforgettable game day experience.',
+    date: '2025-02-22',
+    time: '7:00 PM - 10:00 PM',
+    points: 40,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 8,
+    name: 'Pre-Law Information Session',
+    building_id: 'barco',
+    location: 'Barco Law Building - Teplitz Moot Court',
+    type: 'career',
+    icon: '⚖️',
+    description: 'Interested in law school? Learn about the application process, LSAT preparation, and career paths in law.',
+    date: '2025-02-23',
+    time: '3:00 PM - 5:00 PM',
+    points: 30,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 9,
+    name: 'Art Gallery Opening',
+    building_id: 'frick',
+    location: 'Frick Fine Arts - Gallery',
+    type: 'social',
+    icon: '🎨',
+    description: 'Opening reception for the new student art exhibition. Meet the artists, view their work, and enjoy refreshments.',
+    date: '2025-02-24',
+    time: '5:00 PM - 7:00 PM',
+    points: 20,
+    requirements: [],
+    isActive: true
+  },
+  {
+    id: 10,
+    name: 'Graduate School Fair',
+    building_id: 'wesw',
+    location: 'Posvar Hall - Assembly Room',
+    type: 'career',
+    icon: '🎓',
+    description: 'Explore graduate programs from universities across the country. Learn about funding opportunities and application tips.',
+    date: '2025-02-25',
+    time: '12:00 PM - 4:00 PM',
+    points: 35,
+    requirements: [],
+    isActive: true
+  }
+];
+
+// Helper function to get events by building
+export const getEventsByBuilding = (buildingId) => {
+  return events.filter(event => event.building_id === buildingId && event.isActive);
+};
