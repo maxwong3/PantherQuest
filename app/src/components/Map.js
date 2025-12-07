@@ -3,8 +3,9 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './Map.css';
-import { buildings } from './InitialData.js';
+import { buildings, getEventsByBuilding } from './InitialData.js';
 import BuildingDetails from './Building';
+import Event from './Event';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -34,6 +35,7 @@ const MapController = ({ userLocation }) => {
 
 const Map = ({ userLocation }) => {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const pitt = [40.4443, -79.9608];
 
   // Bounds to restrict map to Pitt campus area
@@ -41,6 +43,10 @@ const Map = ({ userLocation }) => {
     [40.4350, -79.9750], // Southwest corner
     [40.4550, -79.9450]  // Northeast corner
   ];
+
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+  };
 
   return (
     <>
@@ -90,11 +96,18 @@ const Map = ({ userLocation }) => {
       {selectedBuilding && (
         <BuildingDetails 
           building={selectedBuilding}
-          events={[]}
+          events={getEventsByBuilding(selectedBuilding.id)}
           onClose={() => setSelectedBuilding(null)}
-          onEventClick={() => {}}
+          onEventClick={handleEventClick}
           visitedBuildings={[]}
           completedEvents={[]}
+        />
+      )}
+
+      {selectedEvent && (
+        <Event
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
         />
       )}
     </>

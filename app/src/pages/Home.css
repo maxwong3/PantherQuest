@@ -176,8 +176,8 @@
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     padding: 0px;
-    height: 500px;
-    min-height: 500px;
+    height: 600px;
+    min-height: 600px;
     overflow: hidden;
     border: 1px solid #e9ecef;
     transition: box-shadow 0.3s ease;
@@ -192,34 +192,33 @@
     flex: 0 0 380px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    height: 600px;
 }
 
-.quest-list{
+.my-quest-list {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     padding: 28px;
-    min-height: 340px;
+    flex: 1;
     border: 1px solid #e9ecef;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
-.quest-list:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-}
-
-.quest-list h2 {
+.my-quest-list h2 {
     margin: 0 0 24px 0;
     color: #1a1a1a;
     font-size: 24px;
     font-weight: 800;
     position: relative;
     padding-bottom: 12px;
+    flex-shrink: 0;
 }
 
-.quest-list h2::after {
+.my-quest-list h2::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -230,19 +229,21 @@
     border-radius: 2px;
 }
 
-.tips-block {
+.available-quests {
     background: linear-gradient(135deg, #2f6bff 0%, #5a9bff 100%);
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(47, 107, 255, 0.35);
     padding: 28px;
-    min-height: 180px;
+    flex: 1;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
-.tips-block::before {
+.available-quests::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -253,12 +254,7 @@
     pointer-events: none;
 }
 
-.tips-block:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(47, 107, 255, 0.45);
-}
-
-.tips-block h2 {
+.available-quests h2 {
     margin: 0 0 16px 0;
     color: white;
     font-size: 24px;
@@ -266,6 +262,205 @@
     position: relative;
     z-index: 1;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.quest-items {
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 8px;
+}
+
+.quest-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.quest-items::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.quest-items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.quest-items::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.empty-message {
+    color: #94a3b8;
+    font-size: 15px;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+.available-quests .empty-message {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.quest-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.quest-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.quest-item:last-child {
+    margin-bottom: 0;
+}
+
+.quest-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.quest-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.quest-info h3 {
+    margin: 0 0 4px 0;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quest-location {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.add-quest-btn {
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.add-quest-btn:hover {
+    background: white;
+    color: #2f6bff;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.add-quest-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.remove-quest-btn {
+    background: rgba(239, 68, 68, 0.15);
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.remove-quest-btn:hover {
+    background: #ef4444;
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.remove-quest-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.my-quest-list .quest-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.my-quest-list .quest-item:hover {
+    background: #f1f3f5;
+}
+
+.my-quest-list .quest-icon {
+    filter: none;
+}
+
+.my-quest-list .quest-info h3 {
+    color: #1a1a1a;
+    text-shadow: none;
+}
+
+.my-quest-list .quest-location {
+    color: #64748b;
+}
+
+.my-quest-list .quest-items {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 8px;
+    min-height: 0;
+}
+
+.my-quest-list .quest-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.my-quest-list .quest-items::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.my-quest-list .quest-items::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.my-quest-list .quest-items::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
 
 @media (max-width: 900px) {
