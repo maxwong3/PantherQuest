@@ -1,12 +1,20 @@
 const db = require('./db');
 const { buildings, events } = require('../frontend/src/components/InitialData');
 
+const buildingReviews = [
+  { buildingId: 'cathedral', userId: 1, rating: 5, comment: 'Nationality Rooms are a must-see.' },
+  { buildingId: 'hillman', userId: 1, rating: 4, comment: 'Plenty of study space, can get busy midterms.' },
+  { buildingId: 'wpu', userId: 1, rating: 4, comment: 'Great hub for student orgs and grab-and-go food.' },
+  { buildingId: 'benedum', userId: 1, rating: 3, comment: 'Labs are solid but elevators are slow.' },
+  { buildingId: 'sennott', userId: 1, rating: 5, comment: 'Modern classrooms and lots of charging ports.' }
+];
+
 async function seedDatabase() {
   try {
     console.log('Starting database seed...');
 
     // Clear existing data
-    await db.none('TRUNCATE buildings, events, users, user_events RESTART IDENTITY CASCADE');
+    await db.none('TRUNCATE building_reviews, buildings, events, users, user_events RESTART IDENTITY CASCADE');
     console.log('Cleared existing data');
 
     // Insert test users
@@ -58,6 +66,17 @@ async function seedDatabase() {
       );
     }
     console.log(`Inserted ${events.length} events`);
+
+    // Insert building reviews
+    console.log('Inserting building reviews...');
+    for (const review of buildingReviews) {
+      await db.none(
+        `INSERT INTO building_reviews (building_id, user_id, rating, comment)
+         VALUES ($1, $2, $3, $4)`,
+        [review.buildingId, review.userId, review.rating, review.comment]
+      );
+    }
+    console.log(`Inserted ${buildingReviews.length} building reviews`);
 
     console.log('Database seeded successfully!');
     process.exit(0);

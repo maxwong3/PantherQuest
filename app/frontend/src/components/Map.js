@@ -33,7 +33,7 @@ const MapController = ({ userLocation }) => {
   return null;
 };
 
-const Map = ({ userLocation }) => {
+const Map = ({ userLocation, user }) => {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [buildings, setBuildings] = useState([]);
@@ -135,6 +135,7 @@ const Map = ({ userLocation }) => {
           onEventClick={handleEventClick}
           visitedBuildings={[]}
           completedEvents={[]}
+          user={user}
         />
       )}
 

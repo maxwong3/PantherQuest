@@ -116,7 +116,7 @@ const Home = () => {
      
       <div className="content-wrapper">
         <div className="map-container">
-          <Map userLocation={userLocation} />
+          <Map userLocation={userLocation} user={user} />
         </div>
 
         <div className="sidebar">
@@ -198,4 +198,3 @@ const Home = () => {
 };
 
 export default Home;
-

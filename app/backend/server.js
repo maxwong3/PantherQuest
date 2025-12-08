@@ -217,6 +217,92 @@ app.delete('/api/users/:userId/questlist/:eventId', async (req, res) => {
   }
 });
 
+// Get reviews for a building (paginated for UI page controls)
+app.get('/api/buildings/:id/reviews', async (req, res) => {
+  try {
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const pageSize = Math.min(Math.max(parseInt(req.query.pageSize, 10) || 5, 1), 50);
+    const offset = (page - 1) * pageSize;
+
+    const totalResult = await db.one(
+      'SELECT COUNT(*) FROM building_reviews WHERE building_id = $1',
+      [req.params.id]
+    );
+    const total = Number(totalResult.count);
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+    const reviews = await db.any(
+      `SELECT 
+        br.id, br.rating, br.comment, br.created_at,
+        u.username
+       FROM building_reviews br
+       LEFT JOIN users u ON br.user_id = u.id
+       WHERE br.building_id = $1
+       ORDER BY br.created_at DESC
+       LIMIT $2 OFFSET $3`,
+      [req.params.id, pageSize, offset]
+    );
+
+    const formatted = reviews.map(review => ({
+      id: review.id,
+      rating: review.rating,
+      comment: review.comment,
+      createdAt: review.created_at,
+      username: review.username || 'Anonymous'
+    }));
+
+    res.json({
+      reviews: formatted,
+      page,
+      pageSize,
+      totalPages,
+      total,
+    });
+  } catch (error) {
+    console.error('Error fetching building reviews:', error);
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
+// Add a review for a building
+app.post('/api/buildings/:id/reviews', async (req, res) => {
+  try {
+    const { rating, comment, userId } = req.body;
+
+    if (!rating || rating < 1 || rating > 5) {
+      return res.status(400).json({ error: 'Rating must be between 1 and 5' });
+    }
+
+    const cleanComment = comment?.trim() || null;
+
+    const inserted = await db.one(
+      `INSERT INTO building_reviews (building_id, user_id, rating, comment)
+       VALUES ($1, $2, $3, $4)
+       RETURNING id, created_at`,
+      [req.params.id, userId || null, rating, cleanComment]
+    );
+
+    let username = 'Anonymous';
+    if (userId) {
+      const user = await db.oneOrNone('SELECT username FROM users WHERE id = $1', [userId]);
+      if (user?.username) {
+        username = user.username;
+      }
+    }
+
+    res.status(201).json({
+      id: inserted.id,
+      rating,
+      comment: cleanComment,
+      createdAt: inserted.created_at,
+      username
+    });
+  } catch (error) {
+    console.error('Error adding building review:', error);
+    res.status(500).json({ error: 'Failed to add review' });
+  }
+});
+
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
