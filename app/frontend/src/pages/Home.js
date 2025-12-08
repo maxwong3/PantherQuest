@@ -3,7 +3,7 @@ import './Home.css';
 import Profile from '../components/Profile';
 import Map from '../components/Map';
 import Event from '../components/Event';
-import { eventAPI } from '../services/api';
+import { eventAPI, questListAPI } from '../services/api';
 
 
 const Home = () => {
@@ -30,14 +30,52 @@ const Home = () => {
     fetchEvents();
   }, []);
 
-  const handleAddQuest = (event) => {
+  // Fetch user's quest list from database
+  useEffect(() => {
+    const fetchQuestList = async () => {
+      if (user && user.id) {
+        try {
+          const data = await questListAPI.get(user.id);
+          setMyQuests(data);
+        } catch (error) {
+          console.error('Failed to fetch quest list:', error);
+        }
+      }
+    };
+    fetchQuestList();
+  }, [user.id]);
+
+  const handleAddQuest = async (event) => {
     if (!myQuests.find(q => q.id === event.id)) {
+      // Optimistically update UI
       setMyQuests([...myQuests, event]);
+      
+      // Save to database
+      try {
+        await questListAPI.add(user.id, event.id);
+      } catch (error) {
+        console.error('Failed to add quest:', error);
+        // Revert on error
+        setMyQuests(myQuests.filter(q => q.id !== event.id));
+        alert('Failed to add quest. Please try again.');
+      }
     }
   };
 
-  const handleRemoveQuest = (eventId) => {
+  const handleRemoveQuest = async (eventId) => {
+    // Optimistically update UI
+    const previousQuests = myQuests;
     setMyQuests(myQuests.filter(q => q.id !== eventId));
+    
+    // Remove from database
+    try {
+      await questListAPI.remove(user.id, eventId);
+    } catch (error) {
+      console.error('Failed to remove quest:', error);
+      // Revert on error
+      setMyQuests(previousQuests);
+      alert('Failed to remove quest. Please try again.');
+    }
   };
 
   const availableQuests = events.filter(event => !myQuests.find(q => q.id === event.id));

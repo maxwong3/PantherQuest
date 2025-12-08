@@ -52,8 +52,27 @@ export const authAPI = {
     }),
 };
 
+// User Quest List APIs
+export const questListAPI = {
+  // Get user's quest list
+  get: (userId) => apiCall(`/api/users/${userId}/questlist`),
+  
+  // Add event to quest list
+  add: (userId, eventId) => 
+    apiCall(`/api/users/${userId}/questlist/${eventId}`, {
+      method: 'POST',
+    }),
+  
+  // Remove event from quest list
+  remove: (userId, eventId) =>
+    apiCall(`/api/users/${userId}/questlist/${eventId}`, {
+      method: 'DELETE',
+    }),
+};
+
 export default {
   buildingAPI,
   eventAPI,
   authAPI,
+  questListAPI,
 };
