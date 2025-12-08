@@ -3,3 +3,4 @@ app/frontend/node_modules/
 .DS_Store
 app/build/
 app/frontend/build/
+/node_modules
