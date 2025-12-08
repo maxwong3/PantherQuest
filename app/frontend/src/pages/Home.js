@@ -2,11 +2,13 @@ import React ,{useState} from 'react';
 import './Home.css';
 import Profile from '../components/Profile';
 import Map from '../components/Map';
+import Event from '../components/Event';
 import { events } from '../components/InitialData';
 
 
 const Home = () => {
   const [showProfile, setShowProfile] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [myQuests, setMyQuests] = useState([]);
   const user = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
@@ -68,7 +70,11 @@ const Home = () => {
             <div className="quest-items">
               {myQuests.length > 0 ? (
                 myQuests.map(quest => (
-                  <div key={quest.id} className="quest-item my-quest">
+                  <div 
+                    key={quest.id} 
+                    className="quest-item my-quest"
+                    onClick={() => setSelectedEvent(quest)}
+                  >
                     <span className="quest-icon">{quest.icon}</span>
                     <div className="quest-info">
                       <h3>{quest.name}</h3>
@@ -97,7 +103,11 @@ const Home = () => {
             <div className="quest-items">
               {availableQuests.length > 0 ? (
                 availableQuests.map(event => (
-                  <div key={event.id} className="quest-item">
+                  <div 
+                    key={event.id} 
+                    className="quest-item"
+                    onClick={() => setSelectedEvent(event)}
+                  >
                     <span className="quest-icon">{event.icon}</span>
                     <div className="quest-info">
                       <h3>{event.name}</h3>
@@ -122,6 +132,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {selectedEvent && (
+        <Event event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      )}
 
       <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
     </div>
