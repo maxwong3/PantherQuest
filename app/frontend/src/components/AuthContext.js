@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     
@@ -12,38 +12,39 @@ export const AuthProvider = ({ children }) => {
         if (storedUser && token) {
             setUser(JSON.parse(storedUser));
             setIsAuthenticated(true);
-        } else {
-            setIsAuthenticated(false);  
-            
-        }setLoading(false);
+        }
+        setLoading(false);
     }, []);
     
     const login = async (username, password) => {
         setLoading(true);
         try {
-            console.log("here");
             const res = await fetch('/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({username, password})
             });
+            
             if (!res.ok) {
                 const err = await res.json();
-                throw new Error('Login failed:', err.error);
+                throw new Error(err.error || 'Login failed');
             }
 
             const data = await res.json();
+            
+            // Save user and token to localStorage
+            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('token', 'fake-token'); // Add real token later
+            
             setUser(data);
+            setIsAuthenticated(true);
             return true;
         } catch (err) {
-            console.error(err);
-            return false;
+            console.error('Login error:', err);
+            throw err; // Re-throw so Login.js can catch it
         } finally {
             setLoading(false);
         }
-        
-        // add real authentication logic here 
-
     };
 
     const logout = () => {

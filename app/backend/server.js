@@ -7,10 +7,6 @@ const port = 3000
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-})
-
 app.get('/health', (req, res) =>  {
     db.one('SELECT $1 AS value', 123)
     .then((data) => {
@@ -23,22 +19,35 @@ app.get('/health', (req, res) =>  {
     })
 })
 
-app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  console.log("API call: /home")
-})
-
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password required' });
   }
 
-  if (username === 'test' && password === 'test') {
-    return res.json({ username, name: 'Test User' });
-  } else {
-    return res.status(401).json({ error: 'Invalid credentials' });
+  try {
+    // Query database for user
+    const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
+    
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // For now, compare plain text password (TODO: use bcrypt for hashing)
+    if (user.password_hash !== password) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Return user info (don't send password)
+    return res.json({ 
+      username: user.username, 
+      name: user.name,
+      id: user.id 
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ error: 'Login failed' });
   }
 })
 
@@ -140,6 +149,9 @@ app.get('/api/events/:id', async (req, res) => {
     console.error('Error fetching event:', error);
     res.status(500).json({ error: 'Failed to fetch event' });
   }
+});
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 app.listen(port, () => {

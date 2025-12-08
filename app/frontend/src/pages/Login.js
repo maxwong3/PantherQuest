@@ -62,7 +62,7 @@ export default function Login ()  {
           </button>
         </form>
         <div className="test-account">
-          <p>Test Account: <code>test</code> / <code>test</code></p>
+          <p>Test Account: <code>testname</code> / <code>testpass</code></p>
         </div>
       </div>
     </div>
