@@ -1,4 +1,6 @@
-.env
-app/node_modules/
+app/backend/.env
+app/backend/node_modules/
+app/frontend/node_modules/
 .DS_Store
-build/
+app/build/
+app/frontend/build/

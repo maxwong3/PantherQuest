@@ -4,7 +4,7 @@ const db = require('./db')
 const app = express()
 const port = 3000
 
-app.use(express.static(path.join(__dirname, '../app/build')));
+app.use(express.static(path.join(__dirname, '../../app/build')));
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -20,6 +20,10 @@ app.get('/health', (req, res) =>  {
         res.json('status: db connection failed')
         console.log('ERROR:', error)
     })
+})
+
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build/index.html'));
 })
 
 app.listen(port, () => {
