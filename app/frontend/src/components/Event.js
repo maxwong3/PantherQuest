@@ -72,17 +72,6 @@ const Event = ({ event, onClose }) => {
             <h3>About This Event</h3>
             <p>{event.description}</p>
           </div>
-
-          {event.requirements && event.requirements.length > 0 && (
-            <div className="event-requirements">
-              <h3>Requirements</h3>
-              <ul>
-                {event.requirements.map((req, index) => (
-                  <li key={index}>{req}</li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </div>
     </div>

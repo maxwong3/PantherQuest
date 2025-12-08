@@ -184,42 +184,6 @@
   margin: 0;
 }
 
-.event-requirements {
-  margin-bottom: 24px;
-  padding: 20px;
-  background: #fef3c7;
-  border-radius: 16px;
-  border-left: 4px solid #f59e0b;
-}
-
-.event-requirements h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #92400e;
-  margin: 0 0 12px 0;
-}
-
-.event-requirements ul {
-  margin: 0;
-  padding-left: 20px;
-  list-style-type: none;
-}
-
-.event-requirements li {
-  font-size: 14px;
-  color: #78350f;
-  margin-bottom: 8px;
-  position: relative;
-}
-
-.event-requirements li::before {
-  content: '•';
-  position: absolute;
-  left: -16px;
-  color: #f59e0b;
-  font-weight: bold;
-}
-
 .event-actions {
   display: flex;
   justify-content: center;
