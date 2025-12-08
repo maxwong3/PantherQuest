@@ -18,17 +18,29 @@ export const AuthProvider = ({ children }) => {
         }setLoading(false);
     }, []);
     
-    const login = (username, password) => {
-        // Validate test account
-        if (username === 'test' && password === 'test') {
-            const userData = { username: 'test', role: 'user' };
-            localStorage.setItem('user', JSON.stringify(userData));
-            localStorage.setItem('token', 'test-token');
-            setUser(userData);
-            setIsAuthenticated(true);
+    const login = async (username, password) => {
+        setLoading(true);
+        try {
+            console.log("here");
+            const res = await fetch('/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error('Login failed:', err.error);
+            }
+
+            const data = await res.json();
+            setUser(data);
             return true;
+        } catch (err) {
+            console.error(err);
+            return false;
+        } finally {
+            setLoading(false);
         }
-        return false;
         
         // add real authentication logic here 
 

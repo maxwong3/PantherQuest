@@ -4,6 +4,7 @@ const db = require('./db')
 const app = express()
 const port = 3000
 
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../app/build')));
 
 app.get('/', (req, res) => {
@@ -24,6 +25,22 @@ app.get('/health', (req, res) =>  {
 
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'build/index.html'));
+  console.log("API call: /home")
+})
+
+app.post('/login', (req, res) => {
+  console.log("API call: /login")
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password required' });
+  }
+
+  if (username === 'test' && password === 'test') {
+    return res.json({ username, name: 'Test User' });
+  } else {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
 })
 
 app.listen(port, () => {

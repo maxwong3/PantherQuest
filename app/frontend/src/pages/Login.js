@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../components/AuthContext';
 import './Login.css';
 
 export default function Login ()  {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const {login} = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (!username || !password) {
-      setError('Please enter both username and password');
-      return;
-    }
-
-    const success = login(username, password);
-    if (success) {
+    try {
+      await login(username, password);
       navigate('/home');
-    } else {
-      setError('Invalid credentials');
+    } catch (err) {
+      setError(err.message);
     }
   };
 
