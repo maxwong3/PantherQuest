@@ -6,8 +6,51 @@ async function seedDatabase() {
     console.log('Starting database seed...');
 
     // Clear existing data
-    await db.none('TRUNCATE buildings, events, users, user_events RESTART IDENTITY CASCADE');
+    await db.none('TRUNCATE buildings, events, users RESTART IDENTITY CASCADE');
     console.log('Cleared existing data');
+
+    // create tables:
+    await db.none(`
+        DROP TABLE IF EXISTS buildings CASCADE; 
+        DROP TABLE IF EXISTS events CASCADE;
+        DROP TABLE IF EXISTS users CASCADE;
+
+        CREATE TABLE buildings (
+          id TEXT PRIMARY KEY,
+          name TEXT NOT NULL,
+          latitude DOUBLE PRECISION NOT NULL,
+          longitude DOUBLE PRECISION NOT NULL,
+          type TEXT NOT NULL,
+          description TEXT,
+          departments TEXT[] DEFAULT '{}',
+          classrooms TEXT[] DEFAULT '{}',
+          sprite TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS events (
+          id SERIAL PRIMARY KEY,
+          name TEXT NOT NULL,
+          building_id TEXT NOT NULL REFERENCES buildings(id),
+          location TEXT,
+          type TEXT,
+          icon TEXT,
+          description TEXT,
+          date DATE,
+          time TEXT,
+          is_active BOOLEAN DEFAULT TRUE
+        );
+
+        CREATE TABLE IF NOT EXISTS users (
+          username TEXT NOT NULL UNIQUE,
+          password_hash TEXT NOT NULL,
+          name TEXT NOT NULL
+        );
+
+        
+
+      
+      
+      `);
 
     // Insert test users
     console.log('Inserting test users...');

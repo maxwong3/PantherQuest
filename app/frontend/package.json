@@ -1,6 +1,7 @@
 {
   "name": "app",
   "version": "0.1",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "leaflet": "^1.9.4",
