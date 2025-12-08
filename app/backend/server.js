@@ -5,10 +5,10 @@ const app = express()
 const port = 3000
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../../app/build')));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 })
 
 app.get('/health', (req, res) =>  {
@@ -24,7 +24,7 @@ app.get('/health', (req, res) =>  {
 })
 
 app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
   console.log("API call: /home")
 })
 
