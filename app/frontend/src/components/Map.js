@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './Map.css';
-import { buildings, getEventsByBuilding } from './InitialData.js';
+import { buildingAPI } from '../services/api';
 import BuildingDetails from './Building';
 import Event from './Event';
 
@@ -36,7 +36,41 @@ const MapController = ({ userLocation }) => {
 const Map = ({ userLocation }) => {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [buildings, setBuildings] = useState([]);
+  const [buildingEvents, setBuildingEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const pitt = [40.4443, -79.9608];
+
+  //  builddings from API
+  useEffect(() => {
+    const fetchBuildings = async () => {
+      try {
+        const data = await buildingAPI.getAll();
+        setBuildings(data);
+      } catch (error) {
+        console.error('Failed to fetch buildings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBuildings();
+  }, []);
+
+  // events for selected building
+  useEffect(() => {
+    const fetchBuildingEvents = async () => {
+      if (selectedBuilding) {
+        try {
+          const events = await buildingAPI.getEvents(selectedBuilding.id);
+          setBuildingEvents(events);
+        } catch (error) {
+          console.error('Failed to fetch building events:', error);
+          setBuildingEvents([]);
+        }
+      }
+    };
+    fetchBuildingEvents();
+  }, [selectedBuilding]);
 
   // Bounds to restrict map to Pitt campus area
   const campusBounds = [
@@ -96,7 +130,7 @@ const Map = ({ userLocation }) => {
       {selectedBuilding && (
         <BuildingDetails 
           building={selectedBuilding}
-          events={getEventsByBuilding(selectedBuilding.id)}
+          events={buildingEvents}
           onClose={() => setSelectedBuilding(null)}
           onEventClick={handleEventClick}
           visitedBuildings={[]}

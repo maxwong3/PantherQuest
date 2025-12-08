@@ -1,9 +1,9 @@
-import React ,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Profile from '../components/Profile';
 import Map from '../components/Map';
 import Event from '../components/Event';
-import { events } from '../components/InitialData';
+import { eventAPI } from '../services/api';
 
 
 const Home = () => {
@@ -11,7 +11,24 @@ const Home = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [myQuests, setMyQuests] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
+
+  //events from API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const data = await eventAPI.getAll();
+        setEvents(data);
+      } catch (error) {
+        console.error('Failed to fetch events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   const handleAddQuest = (event) => {
     if (!myQuests.find(q => q.id === event.id)) {

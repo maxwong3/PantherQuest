@@ -31,7 +31,7 @@ CREATE TABLE events (
   is_active BOOLEAN DEFAULT true
 );
 
--- Create users table (for future use)
+-- Create users table (for Max use )
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create user_events junction table (for tracking user quest lists)
+-- Create user_events junction table tracking user quest lists
 CREATE TABLE user_events (
   user_id INTEGER REFERENCES users(id),
   event_id INTEGER REFERENCES events(id),
@@ -48,7 +48,7 @@ CREATE TABLE user_events (
   PRIMARY KEY (user_id, event_id)
 );
 
--- Create indexes for better performance
+-- indexes for better performance
 CREATE INDEX idx_events_building ON events(building_id);
 CREATE INDEX idx_events_date ON events(date);
 CREATE INDEX idx_user_events_user ON user_events(user_id);
