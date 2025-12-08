@@ -1,4 +1,5 @@
 -- Drop existing tables if they exist
+DROP TABLE IF EXISTS building_reviews CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS buildings CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -48,7 +49,18 @@ CREATE TABLE user_events (
   PRIMARY KEY (user_id, event_id)
 );
 
+-- Create building reviews table
+CREATE TABLE building_reviews (
+  id SERIAL PRIMARY KEY,
+  building_id VARCHAR(50) REFERENCES buildings(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- indexes for better performance
 CREATE INDEX idx_events_building ON events(building_id);
 CREATE INDEX idx_events_date ON events(date);
 CREATE INDEX idx_user_events_user ON user_events(user_id);
+CREATE INDEX idx_building_reviews_building ON building_reviews(building_id);

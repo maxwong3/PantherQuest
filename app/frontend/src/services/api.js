@@ -32,6 +32,17 @@ export const buildingAPI = {
 
   // Get events for a specific building
   getEvents: (buildingId) => apiCall(`/api/buildings/${buildingId}/events`),
+
+  // Get reviews for a building (paginated)
+  getReviews: (buildingId, { page = 1, pageSize = 5 } = {}) =>
+    apiCall(`/api/buildings/${buildingId}/reviews?page=${page}&pageSize=${pageSize}`),
+
+  // Add a review for a building
+  addReview: (buildingId, payload) =>
+    apiCall(`/api/buildings/${buildingId}/reviews`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
 };
 
 // Event APIs
