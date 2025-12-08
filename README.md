@@ -1,8 +1,25 @@
 # PantherQuest
 
-Hey team: for Sprint 3 Development: Check sprint-3-dev branch!
+Hey team: for Sprint 4 Development: Check sprint-4-dev branch!
 
-To run the application with Express:  
+
+1. Local db Setup
+
+In psql:
+```
+CREATE DATABASE pantherquest;
+\c pantherquest
+\i /PantherQuest/app/backend/schema.sql
+```
+
+In terminal:
+```
+cd app/backend
+node seed.js
+```
+
+
+2. To run the application with Express:  
 ```
 npm run build
 npm run start
