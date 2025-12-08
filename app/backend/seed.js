@@ -6,8 +6,16 @@ async function seedDatabase() {
     console.log('Starting database seed...');
 
     // Clear existing data
-    await db.none('TRUNCATE buildings, events RESTART IDENTITY CASCADE');
+    await db.none('TRUNCATE buildings, events, users, user_events RESTART IDENTITY CASCADE');
     console.log('Cleared existing data');
+
+    // Insert test users
+    console.log('Inserting test users...');
+    await db.none(
+      `INSERT INTO users (username, password_hash, name) VALUES ($1, $2, $3)`,
+      ['testname', 'testpass', 'Test User']
+    );
+    console.log('Inserted test users');
 
     // Insert buildings
     console.log('Inserting buildings...');
