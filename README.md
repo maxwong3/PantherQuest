@@ -4,8 +4,8 @@ Hey team: for Sprint 3 Development: Check sprint-3-dev branch!
 
 To run the application with Express:  
 ```
-cd app
-node app
+npm run build
+npm run start
 ``` 
 Go to localhost:3000
 
