@@ -35,3 +35,42 @@
   cursor: pointer;
 }
 
+.profile-info {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.profile-info p {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.profile-info strong {
+  color: #1c3664;
+  margin-right: 8px;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.logout-button:active {
+  background-color: #bd2130;
+}
