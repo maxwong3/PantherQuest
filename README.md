@@ -18,10 +18,19 @@ cd app/backend
 node seed.js
 ```
 
-2. To run the application with Express:  
+2. To run the application with Express:
+
+Install dependencies:
 ```
 cd app
 npm install
+cd frontend
+npm install
+```
+Then 
+
+```
+cd app
 npm run build
 npm run start
 ``` 
