@@ -196,6 +196,25 @@
     height: 600px;
 }
 
+.quest-search {
+    display: flex;
+    padding: 0 8px 0 8px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
+}
+
 .my-quest-list {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border-radius: 20px;

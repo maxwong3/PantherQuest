@@ -12,6 +12,7 @@ const Home = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [myQuests, setMyQuests] = useState([]);
   const [events, setEvents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
 
@@ -79,6 +80,9 @@ const Home = () => {
   };
 
   const availableQuests = events.filter(event => !myQuests.find(q => q.id === event.id));
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredMyQuests = myQuests.filter(q => q.name.toLowerCase().includes(normalizedQuery));
+  const filteredAvailableQuests = availableQuests.filter(e => e.name.toLowerCase().includes(normalizedQuery));
 
   const handleLocateUser = () => {
     if (navigator.geolocation) {
@@ -120,11 +124,20 @@ const Home = () => {
         </div>
 
         <div className="sidebar">
+          <div className="quest-search">
+            <input
+              type="text"
+              placeholder="Search quests by name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+          </div>
           <div className="my-quest-list">
             <h2>My Quest List</h2>
             <div className="quest-items">
-              {myQuests.length > 0 ? (
-                myQuests.map(quest => (
+              {filteredMyQuests.length > 0 ? (
+                filteredMyQuests.map(quest => (
                   <div 
                     key={quest.id} 
                     className="quest-item my-quest"
@@ -148,7 +161,7 @@ const Home = () => {
                   </div>
                 ))
               ) : (
-                <p className="empty-message">No active quests yet</p>
+                <p className="empty-message">No quests match your search</p>
               )}
             </div>
           </div>
@@ -156,8 +169,8 @@ const Home = () => {
           <div className="available-quests">
             <h2>Available Quests</h2>
             <div className="quest-items">
-              {availableQuests.length > 0 ? (
-                availableQuests.map(event => (
+              {filteredAvailableQuests.length > 0 ? (
+                filteredAvailableQuests.map(event => (
                   <div 
                     key={event.id} 
                     className="quest-item"
@@ -181,7 +194,7 @@ const Home = () => {
                   </div>
                 ))
               ) : (
-                <p className="empty-message">All quests added!</p>
+                <p className="empty-message">No available quests match your search</p>
               )}
             </div>
           </div>
