@@ -72,10 +72,10 @@ const Map = ({ userLocation, user }) => {
     fetchBuildingEvents();
   }, [selectedBuilding]);
 
-  // Bounds to restrict map to Pitt campus area
+  // map display bounds 
   const campusBounds = [
-    [40.4350, -79.9750], // Southwest corner
-    [40.4550, -79.9450]  // Northeast corner
+    [40.4300, -79.9850], 
+    [40.4600, -79.9350]  
   ];
 
   const handleEventClick = (event) => {
