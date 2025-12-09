@@ -16,8 +16,14 @@ export default function Register() {
     setError('');
 
     try {
-      const ok = await register(username, password, name);
-      if (ok) navigate('/home');
+      const res = await register(username, password, name);
+      if (res.status === 400) {
+        alert('Please fill in all fields.');
+        return;
+      } else {
+        alert('Registration successful! Please log in.');
+        navigate('/login');
+      }
     } catch (err) {
       setError(err.message || 'Registration failed');
     }
