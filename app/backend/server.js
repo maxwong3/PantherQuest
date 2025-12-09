@@ -29,7 +29,6 @@ app.post('/login', async (req, res) => {
   }
 
   try {
-    // Query database for user
     const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
     
     console.log('User found:', user ? 'yes' : 'no');
@@ -38,7 +37,6 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // For now, compare plain text password (TODO: use bcrypt for hashing)
     if (user.password_hash !== password) {
       console.log('Password mismatch');
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -46,7 +44,6 @@ app.post('/login', async (req, res) => {
 
     console.log('Login successful for:', username);
     
-    // Return user info (don't send password)
     return res.json({ 
       username: user.username, 
       name: user.name,
@@ -58,7 +55,30 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// API Routes
+app.post('/register', async (req, res) => {
+  const { username, password, name } = req.body;
+  if (!username || !password || !name) {
+    return res.status(400).json({ error: 'Username, password, and name are required' });
+  }   
+  try {
+    const user = await db.none(
+        `INSERT INTO users (username, password_hash, name) 
+         VALUES ($1, $2, $3)`,
+        [
+          username,
+          password,
+          name
+        ]
+      );
+      return res.json({
+        name: user.name
+      });
+    } catch (error) {
+      console.error('Error registering user:', error);
+      return res.status(500).json({ error: 'Registration failed' });
+    }
+});
+
 
 // Get all buildings
 app.get('/api/buildings', async (req, res) => {
