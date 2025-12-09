@@ -15,15 +15,20 @@ export default function Register() {
     e.preventDefault();
     setError('');
 
+    if (!username || !password || !name) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
     try {
       const res = await register(username, password, name);
-      if (res.status === 400) {
-        alert('Please fill in all fields.');
-        return;
-      } else {
+      if (res === true) {
         alert('Registration successful! Please log in.');
         navigate('/login');
-      }
+       } else {
+        alert('Invalid input fields or registration error.');
+        return;
+       }
     } catch (err) {
       setError(err.message || 'Registration failed');
     }

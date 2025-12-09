@@ -65,11 +65,6 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, password, name })
         });
 
-        if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Registration failed');
-        }
-
             const data = await res.json();
             setUser(data.user);
             return true;
