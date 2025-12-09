@@ -1,5 +1,6 @@
-// need to add campus buildings data 
-export const buildings = [
+
+
+const buildings = [
   // --- Major Academic & Landmarks ---
   {
     id: 'cathedral',
@@ -8,7 +9,7 @@ export const buildings = [
     type: 'academic',
     description: 'Iconic 42-story Gothic Revival tower, home to Nationality Rooms and various departments. https://www.tour.pitt.edu/tour/cathedral-learning',
     departments: ['History', 'English', 'Philosophy', 'Religious Studies', 'Honors College'],
-    classrooms: ['G8', '113', '324', '332', 'G24'],
+    classrooms: ['G1-G24', '113', '324', '332', 'G24'],
     sprite: '🏛️'
   },
   {
@@ -336,3 +337,209 @@ export const buildings = [
     sprite: '🖊️'
   }
 ];
+
+// Events data（cant find open api for https://calendar.pitt.edu） 
+const events = [
+  {
+    id: 1,
+    name: 'Make the Most of Your Winter Break (SCI)',
+    building_id: 'sennott',
+    location: 'Sennott Square / Online',
+    type: 'workshop',
+    icon: '❄️',
+    description: 'Workshop for SCI students on how to use winter break productively for side projects and skill building.',
+    date: '2025-12-12',
+    time: '2:00 PM - 2:50 PM',
+    isActive: true
+  },
+  {
+    id: 2,
+    name: 'Fall Term Ends',
+    building_id: 'cathedral',
+    location: 'All Campuses',
+    type: 'social',
+    icon: '🏁',
+    description: 'Official end of the Fall 2025 term. Degrees awarded for Fall graduates.',
+    date: '2025-12-13',
+    time: '11:59 PM - 11:59 PM',
+    isActive: true
+  },
+  {
+    id: 3,
+    name: 'Winter Commencement 2025',
+    building_id: 'petersen',
+    location: 'Petersen Events Center',
+    type: 'social',
+    icon: '🎓',
+    description: 'University-wide Winter Commencement ceremony celebrating the Class of 2025. Tickets required for guests.',
+    date: '2025-12-14',
+    time: '2:00 PM - 5:00 PM',
+    isActive: true
+  },
+  {
+    id: 4,
+    name: 'MLK Jr. Day (University Closed)',
+    building_id: 'wpu',
+    location: 'William Pitt Union',
+    type: 'support',
+    icon: '🕊️',
+    description: 'Observance of Dr. Martin Luther King Jr.\'s Birthday. No classes; University offices closed.',
+    date: '2026-01-19',
+    time: '10:00 AM - 3:00 PM',
+    isActive: true
+  },
+  {
+    id: 5,
+    name: '2025 Christmas Day at Pitt Gift Drive',
+    building_id: 'cathedral',
+    location: 'cathedral of Learning - 1723',
+    type: 'social',
+    icon: '🎁',
+    description: 'Join us in spreading holiday cheer! Participate in the Christmas Day at Pitt Gift Drive by donating new, unwrapped gifts for children in need. Drop-off location: Cathedral of Learning, Room 1723.',
+    date: '2025-12-11',
+    time: '9:00 AM - 5:00 PM',
+    isActive: true
+  },
+  {
+    id: 6,
+    name: 'Earth & Ether: The Art of Lucille and Virgil Cantini',
+    building_id: 'frick',
+    location: 'frick fine arts - gallery',
+    type: 'art',
+    icon: '🎨',
+    description: 'Explore the captivating works of Lucille and Virgil Cantini in this special exhibition at the Frick Fine Arts Gallery. Discover how their art reflects themes of nature, humanity, and transformation through various mediums including sculpture, painting, and mixed media.',
+    date: '2025-12-12',
+    time: '12:00 PM - 4:00 PM',
+    isActive: true
+  },
+  {
+    id: 7,
+    name: 'Fall 2025 Russian Tutoring in the Global Hub',
+    building_id: 'wesw',
+    location: 'Wesley W. Posvar Hall - Global Hub',
+    type: 'social',
+    icon: '🗣️',
+    description: 'Looking to improve your Russian language skills? Join our Fall 2025 Russian Tutoring sessions held in the Global Hub. Open to all skill levels, these sessions provide personalized assistance to help you excel in your studies.',
+    date: '2025-12-10',
+    time: '1:00 PM -3:00 PM',
+    isActive: true
+  },
+  {
+    id: 8,
+    name: 'School of Nursing: Tour & BSN Info Session',
+    building_id: 'victoria',
+    location: 'Victoria Building - Room 123',
+    type: 'career',
+    icon: '🏥',
+    description: 'Visit the School of Nursing for an in-person presentation and tour of the Victoria Building. Ask any questions during the Q&A following the tour of the facilities.',
+    date: '2025-12-12',
+    time: '1:15 PM - 2:15 PM',
+    isActive: true
+  },
+  {
+    id: 9,
+    name: 'Winter 2025 SCI Graduate & Undergraduate Recognition Ceremony',
+    building_id: 'lawrence',
+    location: 'david lawrence hall ',
+    type: 'academic',
+    icon: '🎉',
+    description: 'This ceremony celebrates SCIs 2025 Summer and Fall graduates. Graduates may check in starting at 12:30 p.m. A reception with light refreshments will begin at 1:00 p.m. and the ceremony will follow at 2:00 p.m. Guest tickets are not required' ,
+    date: '2025-12-13',
+    time: '1:00 PM - 3:00 PM',
+    isActive: true
+  },
+  {
+    id: 10,
+    name: 'Department of Biological Sciences - Fall Seminar Series',
+    building_id: 'langley',
+    location: 'Langley Hall - Room A221',
+    type: 'career',
+    icon: '🎓',
+    description: 'Join us for the Department of Biological Sciences Fall Seminar Series featuring guest speakers from various research fields. This week\'s seminar will cover recent advancements in genetic research and its applications.',
+    date: '2025-12-15',
+    time: '11:00 AM - 12:00 PM',
+    isActive: true
+  },
+  {
+    id: 11,
+    name: 'In-Person Open House: Osher Lifelong Learning Institute at Pitt',
+    building_id: 'alumni',
+    location: 'Alumni Hall - 500',
+    type: 'social',
+    icon: '🎓',
+    description: 'Discover the Osher Lifelong Learning Institute at Pitt! Join us for an in-person open house at Alumni Hall to learn about our diverse course offerings, meet instructors, and explore membership benefits. Light refreshments will be served.',
+    date: '2025-12-14',
+    time: '1:30 PM - 2:30 PM',
+    isActive: true
+  },
+  { id: 12,
+    name: '2025 Christmas at pitt day',
+    building_id: 'towers',
+    location: 'Litchfield Towers - Eatery',
+    type: 'social',
+    icon: '🎄',
+    description: 'Celebrate the holiday season at Litchfield Towers! Join us for festive activities, seasonal treats, and a joyful atmosphere at The Eatery. All students are welcome to partake in the holiday cheer!',
+    date: '2025-12-25',
+    time: '10:30 AM - 2:30 PM',
+    isActive: true
+  },
+  { id: 13,
+    name: 'Ecology & Evolution Noon Seminar Series',
+    building_id: 'langley',
+    location: 'Langley Hall - Room A219B',
+    type: 'academic',
+    icon: '🌿',
+    description: 'Join us for the Ecology & Evolution Noon Seminar Series featuring Dr. Jane Smith from the University of California, Berkeley. Dr. Smith will present her latest research on climate change impacts on biodiversity.',
+    date: '2026-1-14',
+    time: '12:00 PM - 1:00 PM',
+    isActive: true
+  },
+  {
+    id: 14,
+    name: 'Spring Recess Begins',
+    building_id: 'cathedral',
+    location: 'All Campuses',
+    type: 'vacation',
+    icon: '✈️',
+    description: 'No classes for students. University offices remain open. Enjoy your Spring Break!',
+    date: '2026-03-08',
+    time: 'All Day',
+    isActive: true
+  },
+  {
+    id: 15,
+    name: 'Spring Term Classes Begin',
+    building_id: 'cathedral',
+    location: 'All Campuses',
+    type: 'academic',
+    icon: '📚',
+    description: 'Official start of the Spring 2026 semester for all undergraduate schools.',
+    date: '2026-01-12',
+    time: '8:00 AM - 6:00 PM',
+    isActive: true
+  },
+  {
+    id: 16,
+    name: 'Residence Halls Close',
+    building_id: 'towers',
+    location: 'All Residence Halls',
+    type: 'support',
+    icon: '🏠',
+    description: 'All residence halls close for Winter Recess. Students must vacate unless approved for extended stay.',
+    date: '2025-12-14',
+    time: '12:00 PM - 1:00 PM',
+    isActive: true
+  }
+];
+
+// Helper function to get events by building
+const getEventsByBuilding = (buildingId) => {
+  return events.filter(event => event.building_id === buildingId && event.isActive);
+};
+
+
+module.exports = {
+  buildings,
+  getEventsByBuilding,
+  events
+};

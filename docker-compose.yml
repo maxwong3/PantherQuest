@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - db-data:/var/lib/postgresql/data
+      - ./app/backend/db/init:/docker-entrypoint-initdb.d:ro
     ports:
       - "5432:5432"
 
@@ -22,6 +23,7 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL}
       NODE_ENV: production
+      SEED_ON_STARTUP: "true"
     depends_on:
       - db
     ports:

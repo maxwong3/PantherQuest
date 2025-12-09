@@ -1,5 +1,5 @@
 const db = require('./db');
-const { buildings, events } = require('../frontend/src/components/InitialData');
+const { buildings, events } = require('./InitialDataDocker');
 
 const buildingReviews = [
   { buildingId: 'cathedral', userId: 1, rating: 5, comment: 'Nationality Rooms are a must-see.' },
@@ -13,15 +13,13 @@ async function seedDatabase() {
   try {
     console.log('Starting database seed...');
 
-    // Clear existing data
-    await db.none('TRUNCATE buildings, events, users RESTART IDENTITY CASCADE');
-    console.log('Cleared existing data');
-
     // create tables:
     await db.none(`
         DROP TABLE IF EXISTS buildings CASCADE; 
         DROP TABLE IF EXISTS events CASCADE;
         DROP TABLE IF EXISTS users CASCADE;
+        DROP TABLE IF EXISTS building_reviews CASCADE;
+        DROP TABLE IF EXISTS user_events CASCADE;
 
         CREATE TABLE buildings (
           id TEXT PRIMARY KEY,
@@ -48,14 +46,29 @@ async function seedDatabase() {
           is_active BOOLEAN DEFAULT TRUE
         );
 
-        CREATE TABLE IF NOT EXISTS users (
+        CREATE TABLE users (
           id SERIAL PRIMARY KEY,
-          username TEXT NOT NULL UNIQUE,
-          password_hash TEXT NOT NULL,
-          name TEXT NOT NULL,
+          username VARCHAR(100) UNIQUE NOT NULL,
+          password_hash VARCHAR(100),
+          name VARCHAR(100),
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
+        CREATE TABLE user_events (
+          user_id INTEGER REFERENCES users(id),
+          event_id INTEGER REFERENCES events(id),
+          added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          PRIMARY KEY (user_id, event_id)
+        );
+
+        CREATE TABLE IF NOT EXISTS building_reviews (
+          id SERIAL PRIMARY KEY,
+          building_id VARCHAR(50) REFERENCES buildings(id) ON DELETE CASCADE,
+          user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+          rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+          comment TEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
         
 
       
