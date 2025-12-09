@@ -47,6 +47,8 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    
+
     const logout = () => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
@@ -54,8 +56,35 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
     };
 
+    const register = async (username, password, name) => {
+    setLoading(true);
+    try {
+        const res = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, name })
+        });
+
+        if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Registration failed');
+        }
+
+            const data = await res.json();
+            setUser(data.user);
+            return true;
+
+        } catch (err) {
+            console.error(err);
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, loading, user }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, loading, user, register }}>
             {children}
         </AuthContext.Provider>
     );

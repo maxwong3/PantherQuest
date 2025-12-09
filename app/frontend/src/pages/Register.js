@@ -1,36 +1,48 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/AuthContext';
-import './Login.css';
+import './Register.css';
 
-export default function Login ()  {
+export default function Register() {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const {login} = useAuth();
+  const { register } = useAuth(); 
   const navigate = useNavigate();
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    console.log("here");
+
     try {
-      await login(username, password);
-      navigate('/home');
+      const ok = await register(username, password, name);
+      if (ok) navigate('/home');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Registration failed');
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <h1>PantherQuest</h1>
-        <p>Navigate Pitt Campus</p>
+    <div className="register-page">
+      <div className="register-card">
+        <h1>Create Account</h1>
+        <p>Join PantherQuest</p>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="register-form">
+          
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your full name"
+              autoComplete="name"
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
@@ -38,7 +50,7 @@ export default function Login ()  {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter username"
+              placeholder="Choose a username"
               autoComplete="username"
             />
           </div>
@@ -50,26 +62,23 @@ export default function Login ()  {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              autoComplete="current-password"
+              placeholder="Create a password"
+              autoComplete="new-password"
             />
           </div>
 
           {error && <div className="error-message">{error}</div>}
 
           <button type="submit" className="login-button">
-            Login
+            Register
           </button>
         </form>
-        <div className="test-account">
-          <p>Test Account: <code>testname</code> / <code>testpass</code></p>
-        </div>
+
         <div className="register-account">
-          <button onClick={() => navigate('/register')}>Register</button>
+          <p>Already have an account?</p>
+          <button onClick={() => navigate('/login')}>Go to Login</button>
         </div>
       </div>
     </div>
   );
-};
-
-
+}
